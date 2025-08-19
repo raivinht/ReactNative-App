@@ -2,6 +2,8 @@ import React from "react";
 import { Text, View, Image, TextInput } from "react-native";
 import { style } from "./styles"
 import Logo from '../../assets/logo.png';
+import { MaterialIcons } from '@expo/vector-icons';
+import { themes } from "../../global/themes";
 
 export default function Login() {
     return (
@@ -12,7 +14,7 @@ export default function Login() {
                     style={style.logo}
                     resizeMode="contain"
                 />
-                <Text>Bem vindo de volta!</Text>
+                <Text style={style.text}>Bem vindo de volta!</Text>
             </View>
             <View style={style.boxMid}>
                 <Text style={style.titleInput}>ENDEREÇO DE E-MAIL</Text>
@@ -20,11 +22,21 @@ export default function Login() {
                     <TextInput
                         style={style.input}
                     />
+                    <MaterialIcons
+                    name = "email"
+                    size = {20}
+                    color={themes.colors.gray}
+                    />
                 </View>
                 <Text style={style.titleInput}>SENHA</Text>
                 <View style={style.boxInput}>
                     <TextInput
                         style={style.input}
+                    />
+                    <MaterialIcons
+                    name = "remove-red-eye"
+                    size = {20}
+                    color={themes.colors.gray}
                     />
                 </View>
             </View>

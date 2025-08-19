@@ -7,22 +7,26 @@ export const style = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        padding: 20,
+        // padding: 20,
     },
     boxTop: {
         height: Dimensions.get('window').height/3,
         width: '100%',
-        backgroundColor: 'red',
+        // backgroundColor: 'red',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     boxMid: {
         height: Dimensions.get('window').height/4,
         width: '100%',
-        backgroundColor: 'green',
+        // backgroundColor: 'green',
+        paddingHorizontal: 37,
     },
     boxBottom: {
         height: Dimensions.get('window').height/3,
         width: '100%',
         backgroundColor: 'blue',
+
     },
     logo: {
         width: 80,
@@ -45,9 +49,14 @@ export const style = StyleSheet.create({
         borderRadius: 40,
         marginTop: 10,
         flexDirection: 'row',
+        alignItems: 'center',
+        paddingHorizontal: 5,
+        backgroundColor: themes.colors.lightGray,
+        borderColor: themes.colors.lightGray,
     },
     input: {
         height: '100%',
-        width: '100%',
+        width: '90%',
+        borderRadius: 40,
     },
 })
