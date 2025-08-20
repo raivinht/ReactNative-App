@@ -25,7 +25,7 @@ export const style = StyleSheet.create({
     boxBottom: {
         height: Dimensions.get('window').height/3,
         width: '100%',
-        backgroundColor: 'blue',
+        // backgroundColor: 'blue',
 
     },
     logo: {
@@ -59,4 +59,12 @@ export const style = StyleSheet.create({
         width: '90%',
         borderRadius: 40,
     },
+    textButton: {
+        fontSize: 16,
+        // color: '#fff',
+        fontWeight: 'bold',
+    },
+    button: {
+        
+    }
 })
