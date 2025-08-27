@@ -13,7 +13,7 @@ export default function Login() {
     async function getLogin() {
         try {
             setLoading(true)
-            if(!email || !password) {
+            if (!email || !password) {
                 return Alert.alert('Atenção', 'Informe os campos obrigatórios!');
             }
 
@@ -49,9 +49,9 @@ export default function Login() {
                         onChangeText={setEmail}
                     />
                     <MaterialIcons
-                    name = "email"
-                    size = {20}
-                    color={themes.colors.gray}
+                        name="email"
+                        size={20}
+                        color={themes.colors.gray}
                     />
                 </View>
                 <Text style={style.titleInput}>SENHA</Text>
@@ -62,9 +62,9 @@ export default function Login() {
                         onChangeText={setPassword}
                     />
                     <MaterialIcons
-                    name = "remove-red-eye"
-                    size = {20}
-                    color={themes.colors.gray}
+                        name="remove-red-eye"
+                        size={20}
+                        color={themes.colors.gray}
                     />
                 </View>
             </View>
@@ -72,14 +72,14 @@ export default function Login() {
                 <TouchableOpacity style={style.button} onPress={() => getLogin()}>
                     {
                         loading ? <ActivityIndicator
-                            color={'#fff'} 
+                            color={'#fff'}
                             size={"small"}
                         /> : <Text style={style.textButton}>Entrar</Text>
                     }
                 </TouchableOpacity>
             </View>
             <Text style={style.textBottom}>Não tem conta?
-            <Text style={{color: themes.colors.primary}}> Crie agora!</Text></Text>
+                <Text style={{ color: themes.colors.primary }}> Crie agora!</Text></Text>
         </View>
     )
 }
