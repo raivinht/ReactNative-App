@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Text, View, Image, TextInput, TouchableOpacity, Alert, ActivityIndicator } from "react-native";
 import { style } from "./styles"
 import Logo from '../../assets/logo.png';
-import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialIcons, Octicons } from '@expo/vector-icons';
 import { themes } from "../../global/themes";
 import { Input } from "../../components/input";
 
@@ -44,33 +44,18 @@ export default function Login() {
             <View style={style.boxMid}>
                 <Input
                 title="ENDEREÇO DE E-MAIL"
+                value={email}
+                onChangeText={setEmail}
+                IconRight={MaterialIcons}
+                IconRightName="email"
                 />
-                {/* <Text style={style.titleInput}>ENDEREÇO DE E-MAIL</Text>
-                <View style={style.boxInput}>
-                    <TextInput
-                        style={style.input}
-                        value={email}
-                        onChangeText={setEmail}
-                    />
-                    <MaterialIcons
-                        name="email"
-                        size={20}
-                        color={themes.colors.gray}
-                    />
-                </View>
-                <Text style={style.titleInput}>SENHA</Text>
-                <View style={style.boxInput}>
-                    <TextInput
-                        style={style.input}
-                        value={password}
-                        onChangeText={setPassword}
-                    />
-                    <MaterialIcons
-                        name="remove-red-eye"
-                        size={20}
-                        color={themes.colors.gray}
-                    />
-                </View> */}
+                <Input 
+                title="SENHA"
+                value={password}
+                onChangeText={setPassword}
+                IconRight={Octicons}
+                IconRightName="eye-closed"
+                />
             </View>
             <View style={style.boxBottom}>
                 <TouchableOpacity style={style.button} onPress={() => getLogin()}>
