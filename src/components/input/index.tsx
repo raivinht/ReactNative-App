@@ -20,7 +20,7 @@ type Props = TextInputProps & {
 
 export const Input = forwardRef(() => {
     return (
-        <>
+        <Fragment>
             <Text style={style.titleInput}>ENDEREÇO DE E-MAIL</Text>
             <View style={style.boxInput}>
                 <TextInput
@@ -32,6 +32,6 @@ export const Input = forwardRef(() => {
                     color={themes.colors.gray}
                 />
             </View>
-        </>
+        </Fragment>
     )
 })
