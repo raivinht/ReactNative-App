@@ -43,7 +43,7 @@ export const Input = forwardRef<TextInput, Props>((Props: Props, ref: ForwardedR
     }
     return (
         <Fragment>
-            <Text style={style.titleInput}>{title}</Text>
+            {title && <Text style={style.titleInput}>{title}</Text>}
             <View style={[style.boxInput, {paddingLeft: calculateSizePaddingLeft()}]}>
                 {IconLeft && IconLeftName && (
                     <TouchableOpacity onPress={OnIconLeftPress} style={style.Button}>

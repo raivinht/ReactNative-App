@@ -5,6 +5,7 @@ import Logo from '../../assets/logo.png';
 import { MaterialIcons, Octicons } from '@expo/vector-icons';
 import { themes } from "../../global/themes";
 import { Input } from "../../components/input";
+import { Button } from "../../components/Button";
 
 export default function Login() {
     const [email, setEmail] = useState('');
@@ -16,7 +17,8 @@ export default function Login() {
         try {
             setLoading(true)
             if (!email || !password) {
-                return Alert.alert('Atenção', 'Informe os campos obrigatórios!');
+                return Alert.alert('Atenção', 'Informe os campos obrigatórios!'),
+                setLoading(false);
             }
 
             setTimeout(() => {
@@ -61,14 +63,7 @@ export default function Login() {
                 />
             </View>
             <View style={style.boxBottom}>
-                <TouchableOpacity style={style.button} onPress={() => getLogin()}>
-                    {
-                        loading ? <ActivityIndicator
-                            color={'#fff'}
-                            size={"small"}
-                        /> : <Text style={style.textButton}>Entrar</Text>
-                    }
-                </TouchableOpacity>
+                <Button text="Entrar" loading={loading} onPress={() => getLogin()} />
             </View>
             <Text style={style.textBottom}>Não tem conta?
                 <Text style={{ color: themes.colors.primary }}> Crie agora!</Text></Text>
