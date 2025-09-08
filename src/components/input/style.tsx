@@ -27,5 +27,8 @@ export const style = StyleSheet.create({
     Icon: {
         width: '100%',
         color: themes.colors.gray,
+    },
+    Button: {
+        width: '10%',
     }
 })

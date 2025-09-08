@@ -31,12 +31,22 @@ export const Input = forwardRef<TextInput, Props>((Props: Props, ref: ForwardedR
             return '100%'
         }
     }
+
+        const calculateSizePaddingLeft = () => {
+        if (IconLeft && IconRight) {
+            return 0
+        } else if (IconLeft || IconRight) {
+            return 10
+        } else {
+            return 20
+        }
+    }
     return (
         <Fragment>
             <Text style={style.titleInput}>{title}</Text>
-            <View style={style.boxInput}>
+            <View style={[style.boxInput, {paddingLeft: calculateSizePaddingLeft()}]}>
                 {IconLeft && IconLeftName && (
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={OnIconLeftPress} style={style.Button}>
                         <IconLeft name={IconLeftName as any} size={ 20 } color={themes.colors.gray}
                          style={style.Icon}
                         />
@@ -48,7 +58,7 @@ export const Input = forwardRef<TextInput, Props>((Props: Props, ref: ForwardedR
                     {...rest}
                 />
                 {IconRight && IconRightName && (
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={OnIconRightPress} style={style.Button}>
                         <IconRight name={IconRightName as any} size={20}
                          style={style.Icon}
                         />

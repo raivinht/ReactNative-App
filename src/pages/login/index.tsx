@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Text, View, Image, TextInput, TouchableOpacity, Alert, ActivityIndicator } from "react-native";
-import { style } from "./styles"
+import { style } from "./styles";
 import Logo from '../../assets/logo.png';
 import { MaterialIcons, Octicons } from '@expo/vector-icons';
 import { themes } from "../../global/themes";
@@ -9,6 +9,7 @@ import { Input } from "../../components/input";
 export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(true);
     const [loading, setLoading] = useState(false);
 
     async function getLogin() {
@@ -19,10 +20,10 @@ export default function Login() {
             }
 
             setTimeout(() => {
-                if (email == 'nogaroto@gmail.com' && password == "12345678") {
+                if (email == 'nogaroto@gmail.com' && password == '12345678') {
                     Alert.alert('Logado com sucesso!');
                 } else {
-                    Alert.alert('Usuário não encontrado');
+                    Alert.alert('Usuário não encontrado!');
                 }
                 setLoading(false);
             }, 3000)
@@ -54,7 +55,9 @@ export default function Login() {
                 value={password}
                 onChangeText={setPassword}
                 IconRight={Octicons}
-                IconRightName="eye-closed"
+                IconRightName={showPassword ? "eye-closed" : "eye"}
+                secureTextEntry={showPassword}
+                OnIconRightPress={() => setShowPassword(!showPassword)}
                 />
             </View>
             <View style={style.boxBottom}>
