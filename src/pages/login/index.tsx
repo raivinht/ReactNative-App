@@ -21,15 +21,17 @@ export default function Login() {
         try {
             setLoading(true)
             if (!email || !password) {
-                return Alert.alert('Atenção', 'Informe os campos obrigatórios!');
+                return Alert.alert('Atenção', 'Informe os campos obrigatórios!'),
+                setLoading(false);
             }
 
-            navigation.navigate("BottomRoutes")
-            console.log("Logou!!!!!!!!!!!!!!");
+            
 
             setTimeout(() => {
                 if (email == 'nogaroto@gmail.com' && password == '12345678') {
                     Alert.alert('Logado com sucesso!');
+                    navigation.navigate("BottomRoutes")
+                    console.log("Logou!!!!!!!!!!!!!!");
                 } else {
                     Alert.alert('Usuário não encontrado!');
                 }
@@ -37,8 +39,6 @@ export default function Login() {
             }, 3000)
         } catch (error) {
             console.log(error);
-        } finally {
-            setLoading(false)
         }
     }
 
