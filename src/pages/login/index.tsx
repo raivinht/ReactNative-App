@@ -12,8 +12,8 @@ export default function Login() {
 
     const navigation = useNavigation<NavigationProp<any>>();
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('a');
+    const [password, setPassword] = useState('a');
     const [showPassword, setShowPassword] = useState(true);
     const [loading, setLoading] = useState(false);
 
@@ -22,21 +22,8 @@ export default function Login() {
             setLoading(true)
             if (!email || !password) {
                 return Alert.alert('Atenção', 'Informe os campos obrigatórios!'),
-                setLoading(false);
+                    setLoading(false);
             }
-
-            
-
-            setTimeout(() => {
-                if (email == 'nogaroto@gmail.com' && password == '12345678') {
-                    Alert.alert('Logado com sucesso!');
-                    navigation.navigate("BottomRoutes")
-                    console.log("Logou!!!!!!!!!!!!!!");
-                } else {
-                    Alert.alert('Usuário não encontrado!');
-                }
-                setLoading(false);
-            }, 3000)
         } catch (error) {
             console.log(error);
         }
@@ -54,20 +41,20 @@ export default function Login() {
             </View>
             <View style={style.boxMid}>
                 <Input
-                title="ENDEREÇO DE E-MAIL"
-                value={email}
-                onChangeText={setEmail}
-                IconRight={MaterialIcons}
-                IconRightName="email"
+                    title="ENDEREÇO DE E-MAIL"
+                    value={email}
+                    onChangeText={setEmail}
+                    IconRight={MaterialIcons}
+                    IconRightName="email"
                 />
-                <Input 
-                title="SENHA"
-                value={password}
-                onChangeText={setPassword}
-                IconRight={Octicons}
-                IconRightName={showPassword ? "eye-closed" : "eye"}
-                secureTextEntry={showPassword}
-                OnIconRightPress={() => setShowPassword(!showPassword)}
+                <Input
+                    title="SENHA"
+                    value={password}
+                    onChangeText={setPassword}
+                    IconRight={Octicons}
+                    IconRightName={showPassword ? "eye-closed" : "eye"}
+                    secureTextEntry={showPassword}
+                    OnIconRightPress={() => setShowPassword(!showPassword)}
                 />
             </View>
             <View style={style.boxBottom}>
