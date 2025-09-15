@@ -13,10 +13,18 @@ export default ({state, navigation}: any) => {
                 />
             </TouchableOpacity>
             <TouchableOpacity style={style.tabItemButton}>
-                <View>
+                <View style={{ width: '100%', left: 10, top: 4 }}>
                     <Entypo
                         name="plus"
                         size={40}
+                        color={'#FFF'}
+                    />
+                </View>
+                <View style={{ flexDirection: 'row-reverse', width: '100%', right: 10 }}>
+                    <MaterialIcons
+                        name="edit"
+                        style={{color:'#FFFF'}}
+                        size={30}
                     />
                 </View>
             </TouchableOpacity>
