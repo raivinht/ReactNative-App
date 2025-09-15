@@ -21,11 +21,17 @@ export default function Login() {
         try {
             setLoading(true)
             if (!email || !password) {
-                return Alert.alert('Atenção', 'Informe os campos obrigatórios!'),
-                    setLoading(false);
+                return Alert.alert('Atenção', 'Informe os campos obrigatórios!');
             }
+
+            navigation.navigate("BottomRoutes")
+
+            console.log("Logou!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+
         } catch (error) {
             console.log(error);
+        } finally {
+            setLoading(false);
         }
     }
 
