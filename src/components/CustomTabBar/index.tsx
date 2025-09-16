@@ -2,14 +2,22 @@ import React from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { AntDesign, FontAwesome, Entypo, MaterialIcons } from '@expo/vector-icons'
 import { style } from "./styles";
+import { themes } from "../../global/themes";
 
 export default ({state, navigation}: any) => {
+
+    const go = (screenName: string) => {
+        navigation.navigate(screenName);
+    }
     return (
         <View style={style.tabArea}>
-            <TouchableOpacity style={style.tabItem}>
+            <TouchableOpacity style={style.tabItem} onPress={() => go("List")}>
                 <AntDesign
                     name="bars"
-                    style={{ fontSize: 32 }}
+                    style={{ opacity: state.index === 0 ? 1: 0.3,
+                        color:themes.colors.primary,
+                        fontSize: 32
+                     }}
                 />
             </TouchableOpacity>
             <TouchableOpacity style={style.tabItemButton}>
@@ -28,10 +36,13 @@ export default ({state, navigation}: any) => {
                     />
                 </View>
             </TouchableOpacity>
-            <TouchableOpacity style={style.tabItem}>
+            <TouchableOpacity style={style.tabItem} onPress={() => go("User")}>
                 <FontAwesome
                     name="user"
-                    style={{ fontSize: 32 }}
+                    style={{ opacity: state.index === 1 ? 1: 0.3,
+                        color:themes.colors.primary,
+                        fontSize: 32
+                     }}
                 />
             </TouchableOpacity>
         </View>
