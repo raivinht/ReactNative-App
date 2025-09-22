@@ -4,31 +4,33 @@ import { style } from "./styles";
 import { Input } from "../../components/input";
 import { MaterialIcons } from '@expo/vector-icons';
 import { Ball } from "../../components/Ball";
+import { Flag } from "../../components/Flag";
+import { themes } from "../../global/themes";
 
 type PropCard = {
     item: number,
     title: string,
     description: string,
-    flag: 'urgente' | 'opcional'
+    flag: 'Urgente' | 'Opcional'
 }
 const data: Array<PropCard> = [
     {
         item: 0,
         title: 'Realizar lição de casa',
         description: 'página 18 ao 28',
-        flag: 'urgente'
+        flag: 'Urgente'
     },
     {
         item: 1,
         title: 'Passear com o cachorro',
         description: 'ás 17:00',
-        flag: 'urgente'
+        flag: 'Urgente'
     },
     {
         item: 2,
         title: 'Sair para tomar um sorvete',
         description: 'Ali na esquina',
-        flag: 'opcional'
+        flag: 'Opcional'
     },
 ]
 
@@ -44,7 +46,7 @@ export default function List() {
                             <Text>{item.description}</Text>
                         </View>
                     </View>
-                    {/* <Flag /> */}
+                    <Flag caption={item.flag} color={themes.colors.red} />
                 </View>
             </TouchableOpacity>
         )
