@@ -8,7 +8,7 @@ export const style = StyleSheet.create({
     },
     header: {
         width: '100%',
-        height: Dimensions.get('window').height/6,
+        height: Dimensions.get('window').height / 6,
         backgroundColor: themes.colors.primary,
         paddingHorizontal: 20,
         justifyContent: 'center',
@@ -18,7 +18,14 @@ export const style = StyleSheet.create({
         color: '#FFF',
         marginTop: 20,
     },
-        boxInput: {
+    boxInput: {
         width: '80%',
     },
+    boxList: {
+        flex: 1,
+        width: '100%',
+        backgroundColor: 'red',
+        marginTop: 40,
+        paddingHorizontal: 30
+    }
 })
