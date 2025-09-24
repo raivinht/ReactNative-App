@@ -31,7 +31,7 @@ export default ({state, navigation}: any) => {
                         color={'#FFF'}
                     />
                 </View>
-                <View style={{ flexDirection: 'row-reverse', width: '100%', right: 10 }}>
+                <View style={{ flexDirection: 'row-reverse', width: '100%', right: 10, bottom: 10 }}>
                     <MaterialIcons
                         name="edit"
                         style={{color:'#FFFF'}}
