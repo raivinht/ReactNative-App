@@ -3,8 +3,15 @@ import { MaterialIcons, AntDesign } from '@expo/vector-icons'
 import { Dimensions, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Modalize } from "react-native-modalize";
 import { Input } from "../components/input";
+import { themes } from "../global/themes";
+import { Flag } from "../components/Flag";
 
 export const AuthContextList: any = createContext({});
+
+const flags = [
+    { caption: 'Urgente', color: themes.colors.red },
+    { caption: 'Opcional', color: themes.colors.blueLight }
+];
 
 export const AuthProviderList = (Props: any): any => {
     const modalizeRef = useRef<Modalize>(null);
@@ -15,6 +22,19 @@ export const AuthProviderList = (Props: any): any => {
     useEffect(() => {
         onOpen()
     }, [])
+
+    const _renderFlags = () => {
+        return (
+            flags.map((item, index) => (
+                <TouchableOpacity>
+                    <Flag
+                        caption={item.caption}
+                        color={item.color}
+                    />
+                </TouchableOpacity>
+            ))
+        )
+    }
 
     const _container = () => {
         return (
@@ -49,15 +69,15 @@ export const AuthProviderList = (Props: any): any => {
                     />
                 </View>
                 <View style={{ width: '40%' }}>
-                    <Input 
+                    <Input
                         title="Tempo limite:"
-                        labelStyle={styles.label}    
+                        labelStyle={styles.label}
                     />
                 </View>
                 <View style={styles.containerFlag}>
                     <Text style={styles.label}>Flags:</Text>
-                    <View style={{}}>
-
+                    <View style={styles.rowFlags}>
+                        {_renderFlags()}
                     </View>
                 </View>
             </View>
@@ -107,5 +127,10 @@ const styles = StyleSheet.create({
     containerFlag: {
         width: '100%',
         padding: 10
+    },
+    rowFlags: {
+        flexDirection: 'row',
+        gap: 10,
+        marginTop: 10,
     }
 })
