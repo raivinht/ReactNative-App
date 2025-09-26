@@ -14,9 +14,15 @@ const flags = [
 ];
 
 export const AuthProviderList = (Props: any): any => {
+
     const modalizeRef = useRef<Modalize>(null);
+    
     const onOpen = () => {
         modalizeRef?.current?.open();
+    }
+
+    const onClose = () => {
+        modalizeRef?.current?.close();
     }
 
     useEffect(() => {
@@ -26,10 +32,11 @@ export const AuthProviderList = (Props: any): any => {
     const _renderFlags = () => {
         return (
             flags.map((item, index) => (
-                <TouchableOpacity>
+                <TouchableOpacity key={index}>
                     <Flag
                         caption={item.caption}
                         color={item.color}
+                        selected
                     />
                 </TouchableOpacity>
             ))
@@ -40,7 +47,7 @@ export const AuthProviderList = (Props: any): any => {
         return (
             <View style={styles.container}>
                 <View style={styles.header}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => onClose()}>
                         <MaterialIcons
                             name="close"
                             size={30}
