@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useRef, useEffect, useState, use } from "react";
+import React, { createContext, useContext, useRef, useState } from "react";
 import { MaterialIcons, AntDesign } from '@expo/vector-icons'
 import { Dimensions, KeyboardAvoidingView, Platform, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Modalize } from "react-native-modalize";
@@ -6,6 +6,7 @@ import { Input } from "../components/input";
 import { themes } from "../global/themes";
 import { Flag } from "../components/Flag";
 import CustomDateTimePicker from "../components/CustomDateTimePicker";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const AuthContextList: any = createContext({});
 
@@ -33,10 +34,6 @@ export const AuthProviderList = (Props: any): any => {
         modalizeRef?.current?.close();
     }
 
-    useEffect(() => {
-        onOpen()
-    }, [])
-
     const _renderFlags = () => {
         return (
             flags.map((item, index) => (
@@ -56,6 +53,16 @@ export const AuthProviderList = (Props: any): any => {
     }
     const handleTimeChange = (date) => {
         setSelectedTime(date);
+    }
+    const handleSave = () => {
+        const newItem = {
+            item: 0,
+            title: 'Titulo',
+            description: 'Descrição',
+            flags: 'Flags',
+            timeLimite: '01.02.2025'
+        }
+        console.log(newItem)
     }
 
     const _container = () => {
