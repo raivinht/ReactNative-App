@@ -22,6 +22,8 @@ export const AuthProviderList = (Props: any): any => {
     const [selectedFlag, setSelected] = useState('Urgente');
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [selectedTime, setSelectedTime] = useState(new Date());
+    const [showDatePicker, setShowDatePicker] = useState(false);
+    const [showTimePicker, setShowTimePicker] = useState(false);
 
     const onOpen = () => {
         modalizeRef?.current?.open();
@@ -47,6 +49,13 @@ export const AuthProviderList = (Props: any): any => {
                 </TouchableOpacity>
             ))
         )
+    }
+
+    const handleDateChange = (date) => {
+        setSelectedDate(date);
+    }
+    const handleTimeChange = (date) => {
+        setSelectedTime(date);
     }
 
     const _container = () => {
@@ -95,9 +104,15 @@ export const AuthProviderList = (Props: any): any => {
                         labelStyle={styles.label}
                     /> */}
                     <CustomDateTimePicker 
-                        onDateChange={() => {}}
-                        setShow={() => {}}
-                        show={true}
+                        onDateChange={handleDateChange}
+                        setShow={setShowDatePicker}
+                        show={showDatePicker}
+                        type={'date'}
+                    />
+                    <CustomDateTimePicker 
+                        onDateChange={handleTimeChange}
+                        setShow={setShowTimePicker}
+                        show={showTimePicker}
                         type={'date'}
                     />
                 </View>
