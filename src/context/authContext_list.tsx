@@ -96,6 +96,7 @@ export const AuthProviderList = (Props: any): any => {
                         numberOfLines={5}
                         value={description}
                         onChangeText={setDescription}
+                        textAlignVertical="top"
                     />
                 </View>
                 <View style={{ width: '40%' }}>
@@ -132,7 +133,7 @@ export const AuthProviderList = (Props: any): any => {
                         onDateChange={handleTimeChange}
                         setShow={setShowTimePicker}
                         show={showTimePicker}
-                        type={'date'}
+                        type={'time'}
                     />
                 </View>
                 <View style={styles.containerFlag}>
