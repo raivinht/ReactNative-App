@@ -1,6 +1,6 @@
-import React, { createContext, useContext, useRef, useEffect } from "react";
+import React, { createContext, useContext, useRef, useEffect, useState, use } from "react";
 import { MaterialIcons, AntDesign } from '@expo/vector-icons'
-import { Dimensions, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Dimensions, KeyboardAvoidingView, Platform, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Modalize } from "react-native-modalize";
 import { Input } from "../components/input";
 import { themes } from "../global/themes";
@@ -16,7 +16,12 @@ const flags = [
 export const AuthProviderList = (Props: any): any => {
 
     const modalizeRef = useRef<Modalize>(null);
-    
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
+    const [selectedFlag, setSelected] = useState('Urgente');
+    const [selectedDate, setSelectedDate] = useState(new Date());
+    const [selectedTime, setSelectedTime] = useState(new Date());
+
     const onOpen = () => {
         modalizeRef?.current?.open();
     }
@@ -45,7 +50,10 @@ export const AuthProviderList = (Props: any): any => {
 
     const _container = () => {
         return (
-            <View style={styles.container}>
+            <KeyboardAvoidingView
+                style={styles.container}
+                behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+            >
                 <View style={styles.header}>
                     <TouchableOpacity onPress={() => onClose()}>
                         <MaterialIcons
@@ -67,12 +75,17 @@ export const AuthProviderList = (Props: any): any => {
                     <Input
                         title="Titulo"
                         labelStyle={styles.label}
+                        value={title}
+                        onChangeText={setTitle}
                     />
                     <Input
                         title="Descrição"
                         labelStyle={styles.label}
                         height={100}
                         multiline
+                        numberOfLines={5}
+                        value={description}
+                        onChangeText={setDescription}
                     />
                 </View>
                 <View style={{ width: '40%' }}>
@@ -87,7 +100,7 @@ export const AuthProviderList = (Props: any): any => {
                         {_renderFlags()}
                     </View>
                 </View>
-            </View>
+            </KeyboardAvoidingView>
         )
     }
     return (
