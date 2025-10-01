@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useRef, useState } from "react";
 import { MaterialIcons, AntDesign } from '@expo/vector-icons'
-import { Dimensions, KeyboardAvoidingView, Platform, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Alert, Dimensions, KeyboardAvoidingView, Platform, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Modalize } from "react-native-modalize";
 import { Input } from "../components/input";
 import { themes } from "../global/themes";
@@ -60,21 +60,30 @@ export const AuthProviderList = (Props: any): any => {
     const handleTimeChange = (date) => {
         setSelectedTime(date);
     }
-    const handleSave = () => {
-        const newItem = {
-            item: Date.now(),
-            title,
-            description,
-            flags: selectedFlag,
-            timeLimite: new Date(
-                selectedDate.getFullYear(),
-                selectedDate.getMonth(),
-                selectedDate.getDate(),
-                selectedTime.getHours(),
-                selectedTime.getMinutes()
-            ).toISOString(),
+    const handleSave = async () => {
+        if (!title || !description || !selectedFlag) {
+            return Alert.alert('Atenção', 'Preencha os campos corretamente!');
         }
-        console.log(newItem)
+        try {
+            const newItem = {
+                item: Date.now(),
+                title,
+                description,
+                flags: selectedFlag,
+                timeLimite: new Date(
+                    selectedDate.getFullYear(),
+                    selectedDate.getMonth(),
+                    selectedDate.getDate(),
+                    selectedTime.getHours(),
+                    selectedTime.getMinutes()
+                ).toISOString()
+            }
+
+            await AsyncStorage.setItem('taskList', JSON.stringify(newItem))
+
+        } catch (error) {
+            console.log("Erro ao salvar o item!", error)
+        }
     }
 
     const _container = () => {
