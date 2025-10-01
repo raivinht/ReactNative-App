@@ -46,7 +46,7 @@ export default function List() {
                             <Text style={style.descriptionCard}>{item.description}</Text>
                         </View>
                     </View>
-                    <Flag caption={item.flag} color={themes.colors.red} />
+                    <Flag caption={item.flag} color={themes.colors.red} selected={null}/>
                 </View>
             </TouchableOpacity>
         )
