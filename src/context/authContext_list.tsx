@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useRef, useState } from "react";
+import React, { createContext, useContext, useEffect, useRef, useState } from "react";
 import { MaterialIcons, AntDesign } from '@expo/vector-icons'
 import { Alert, Dimensions, KeyboardAvoidingView, Platform, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Modalize } from "react-native-modalize";
@@ -26,14 +26,18 @@ export const AuthProviderList = (Props: any): any => {
     const [showDatePicker, setShowDatePicker] = useState(false);
     const [showTimePicker, setShowTimePicker] = useState(false);
     const [item, setItem] = useState(0);
+    const [taskList, setTaskList] = useState([]);
 
     const onOpen = () => {
         modalizeRef?.current?.open();
     }
-
     const onClose = () => {
         modalizeRef?.current?.close();
     }
+
+    useEffect(() => {
+        console.log(taskList.length)
+    }, [taskList])
 
     const _renderFlags = () => {
         return (
@@ -79,11 +83,29 @@ export const AuthProviderList = (Props: any): any => {
                 ).toISOString()
             }
 
-            await AsyncStorage.setItem('taskList', JSON.stringify(newItem))
+            const storageData = await AsyncStorage.getItem('tasklist');
+            // console.log(storageData)
+            let taskList = storageData ? JSON.parse(storageData) : [];
+            
+            taskList.push(newItem)
+            await AsyncStorage.setItem('tasklist', JSON.stringify(taskList))
+
+            setTaskList(taskList);
+            setData();
+            onClose();
 
         } catch (error) {
             console.log("Erro ao salvar o item!", error)
         }
+    }
+
+    const setData = () => {
+        setTitle('');
+        setDescription('');
+        setSelectedFlag('Urgente');
+        setItem(0);
+        setSelectedDate(new Date());
+        setSelectedTime(new Date());
     }
 
     const _container = () => {
@@ -102,7 +124,7 @@ export const AuthProviderList = (Props: any): any => {
 
                     <Text style={styles.title}>Criar Tarefa</Text>
 
-                    <TouchableOpacity onPress={() => [handleSave(), onClose()]}>
+                    <TouchableOpacity onPress={() => handleSave()}>
                         <AntDesign
                             name="check"
                             size={30}
@@ -174,7 +196,7 @@ export const AuthProviderList = (Props: any): any => {
         )
     }
     return (
-        <AuthContextList.Provider value={{ onOpen }}>
+        <AuthContextList.Provider value={{ onOpen, taskList }}>
             {Props.children}
             <Modalize
                 ref={modalizeRef}
