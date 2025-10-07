@@ -5,7 +5,7 @@ import { style } from "./style";
 type Props = {
     caption: string,
     color: string,
-    selected: boolean
+    // selected: boolean
 }
 
 export function Flag({ ...rest }: Props) {
@@ -13,7 +13,7 @@ export function Flag({ ...rest }: Props) {
         <View style={[
             style.container,
             { backgroundColor: rest?.color },
-            rest?.selected && { borderWidth: 2 }
+            // rest?.selected && { borderWidth: 2 }
         ]}
         >
             <Text style={{ color: '#FFF' }}>{rest.caption}</Text>

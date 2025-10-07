@@ -51,7 +51,7 @@ export const AuthProviderList = (Props: any): any => {
                     <Flag
                         caption={item.caption}
                         color={item.color}
-                        selected={item.caption == selectedFlag}
+                        // selected={item.caption == selectedFlag}
                     />
                 </TouchableOpacity>
             ))
@@ -73,8 +73,8 @@ export const AuthProviderList = (Props: any): any => {
                 item: Date.now(),
                 title,
                 description,
-                flags: selectedFlag,
-                timeLimite: new Date(
+                flag: selectedFlag,
+                timeLimit: new Date(
                     selectedDate.getFullYear(),
                     selectedDate.getMonth(),
                     selectedDate.getDate(),
