@@ -9,21 +9,31 @@ import { themes } from "../../global/themes";
 import { AuthContextList } from "../../context/authContext_list";
 import { formatDateToBR } from "../../global/functions";
 import { AuthContextType, PropCard } from "../../global/Props";
-import { Swipeable } from "react-native-gesture-handler";
+import { Directions, Swipeable } from "react-native-gesture-handler";
 
 export default function List() {
-    const { taskList } = useContext<AuthContextType>(AuthContextList)
+    const { taskList, handleDelete } = useContext<AuthContextType>(AuthContextList)
     const swipeableRefs = useRef([])
-    const renderRightActions = () => {
-        return (<View style={style.button}>
+
+    const renderRightActions = () => (
+        <View style={style.button}>
             <AntDesign
                 name="delete"
                 size={20}
                 color={'#FFF'}
             />
         </View>
-        )
+    );
+
+    const handleSwipeOpen = (directions: 'right' | 'left', item, index) => {
+        if (directions == 'right') {
+            handleDelete(item)
+            swipeableRefs.current[index]?.close()
+        } else {
+            //
+        }
     }
+
     const renderLeftActions = () => {
         return (
             <View style={[style.button, { backgroundColor: themes.colors.blueLight }]}>
@@ -44,6 +54,7 @@ export default function List() {
                 key={index}
                 renderRightActions={renderRightActions}
                 renderLeftActions={renderLeftActions}
+                onSwipeableOpen={(directions) => handleSwipeOpen(directions, item, index)}
             >
                 <View style={style.card}>
                     <View style={style.rowCard}>
