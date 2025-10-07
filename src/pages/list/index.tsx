@@ -51,7 +51,7 @@ export default function List() {
         const color = item.flag == 'Opcional' ? themes.colors.blueLight : themes.colors.red
         return (
             <Swipeable
-                ref={(ref) => { swipeableRefs.current[index] = ref; }}
+                ref={(ref) => swipeableRefs.current[index] = ref}
                 key={index}
                 renderRightActions={renderRightActions}
                 renderLeftActions={renderLeftActions}

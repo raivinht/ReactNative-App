@@ -96,7 +96,6 @@ export const AuthProviderList = (Props: any): any => {
                 taskList.push(newItem)
             }
             
-            taskList.push(newItem)
             await AsyncStorage.setItem('tasklist', JSON.stringify(taskList))
 
             setTaskList(taskList);
@@ -119,7 +118,7 @@ export const AuthProviderList = (Props: any): any => {
 
     async function get_taskList() {
         try {
-            const storageData = await AsyncStorage.getItem('taskList');
+            const storageData = await AsyncStorage.getItem('tasklist');
             const taskList = storageData ? JSON.parse(storageData) : []
             setTaskList(taskList)
         } catch (error) {
@@ -129,12 +128,12 @@ export const AuthProviderList = (Props: any): any => {
 
     const handleDelete = async (itemToDelete) => {
         try {
-            const StorageData = await AsyncStorage.getItem('taskList')
+            const StorageData = await AsyncStorage.getItem('tasklist')
             const taskList: Array<any> = StorageData ? JSON.parse(StorageData) : []
             
             const updatedTaskList = taskList.filter(item => item.item !== itemToDelete.item)
 
-            await AsyncStorage.setItem('taskList', JSON.stringify(updatedTaskList))
+            await AsyncStorage.setItem('tasklist', JSON.stringify(updatedTaskList))
             setTaskList(updatedTaskList)
 
         } catch (error) {
@@ -202,10 +201,6 @@ export const AuthProviderList = (Props: any): any => {
                     />
                 </View>
                 <View style={{ width: '40%' }}>
-                    {/* <Input
-                        title="Tempo limite:"
-                        labelStyle={styles.label}
-                    /> */}
                     <View style={{ flexDirection: 'row', gap: 10, width: 10 }}>
                         <TouchableOpacity onPress={() => setShowDatePicker(true)} style={{ width: 200 }}>
                             <Input
