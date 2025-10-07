@@ -7,6 +7,7 @@ import { themes } from "../global/themes";
 import { Flag } from "../components/Flag";
 import CustomDateTimePicker from "../components/CustomDateTimePicker";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { PropCard } from "../global/Props";
 
 export const AuthContextList: any = createContext({});
 
@@ -70,7 +71,7 @@ export const AuthProviderList = (Props: any): any => {
         }
         try {
             const newItem = {
-                item: Date.now(),
+                item: item !== 0 ? item : Date.now(),
                 title,
                 description,
                 flag: selectedFlag,
@@ -85,7 +86,15 @@ export const AuthProviderList = (Props: any): any => {
 
             const storageData = await AsyncStorage.getItem('tasklist');
             // console.log(storageData)
-            let taskList = storageData ? JSON.parse(storageData) : [];
+            let taskList: Array<any> = storageData ? JSON.parse(storageData) : [];
+
+            const itemIndex = taskList.findIndex((task) => task.item === newItem.item)
+
+            if (itemIndex >= 0) {
+                taskList[itemIndex] = newItem
+            } else {
+                taskList.push(newItem)
+            }
             
             taskList.push(newItem)
             await AsyncStorage.setItem('tasklist', JSON.stringify(taskList))
@@ -130,6 +139,24 @@ export const AuthProviderList = (Props: any): any => {
 
         } catch (error) {
             console.log("Erro ao excluir o item", error)
+        }
+    }
+
+    const handleEdit = async (itemToEdit: PropCard) => {
+        try {
+            setTitle(itemToEdit.title)
+            setDescription(itemToEdit.description)
+            setItem(itemToEdit.item)
+            setSelectedFlag(itemToEdit.flag)
+
+            const timeLimit = new Date(itemToEdit.timeLimit);
+            setSelectedDate(timeLimit)
+            setSelectedTime(timeLimit)
+
+            onOpen()
+
+        } catch (error) {
+            console.log('Erro ao editar')
         }
     }
 
@@ -221,7 +248,7 @@ export const AuthProviderList = (Props: any): any => {
         )
     }
     return (
-        <AuthContextList.Provider value={{ onOpen, taskList, handleDelete }}>
+        <AuthContextList.Provider value={{ onOpen, taskList, handleDelete, handleEdit }}>
             {Props.children}
             <Modalize
                 ref={modalizeRef}

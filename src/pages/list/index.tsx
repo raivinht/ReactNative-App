@@ -12,7 +12,7 @@ import { AuthContextType, PropCard } from "../../global/Props";
 import { Directions, Swipeable } from "react-native-gesture-handler";
 
 export default function List() {
-    const { taskList, handleDelete } = useContext<AuthContextType>(AuthContextList)
+    const { taskList, handleDelete, handleEdit } = useContext<AuthContextType>(AuthContextList)
     const swipeableRefs = useRef([])
 
     const renderRightActions = () => (
@@ -30,8 +30,9 @@ export default function List() {
             handleDelete(item)
             swipeableRefs.current[index]?.close()
         } else {
-            //
+            handleEdit(item)
         }
+        swipeableRefs.current[index]?.close()
     }
 
     const renderLeftActions = () => {
