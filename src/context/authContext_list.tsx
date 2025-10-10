@@ -35,6 +35,7 @@ export const AuthProviderList = (Props: any): any => {
     }
     const onClose = () => {
         modalizeRef?.current?.close();
+        setData();
     }
 
     useEffect(() => {
@@ -82,7 +83,7 @@ export const AuthProviderList = (Props: any): any => {
                     selectedDate.getDate(),
                     selectedTime.getHours(),
                     selectedTime.getMinutes()
-                ).toISOString()
+                )
             }
 
             const storageData = await AsyncStorage.getItem('tasklist');
@@ -272,6 +273,7 @@ export const AuthProviderList = (Props: any): any => {
             {Props.children}
             <Modalize
                 ref={modalizeRef}
+                onClosed={setData}
                 // modalHeight={Dimensions.get('window').height / 1.3}
                 childrenStyle={{ height: Dimensions.get('window').height / 1.3 }}
                 adjustToContentHeight={true}
